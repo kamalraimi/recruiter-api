@@ -1,0 +1,3 @@
+mode: atomic
+github.com/kamalraimi/recruiter-api/main.go:5.21,7.2 1 1
+github.com/kamalraimi/recruiter-api/main.go:9.13,12.2 2 0
