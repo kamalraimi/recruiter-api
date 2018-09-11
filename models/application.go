@@ -1,6 +1,10 @@
 package models
 
-import "time"
+import (
+	"time"
+
+	"github.com/kamalraimi/recruiter-api/config"
+)
 
 type Application struct {
 	ID             uint   `gorm:"primary_key" form:"id" json:"id"`
@@ -17,4 +21,32 @@ type Application struct {
 
 	Position   Position `gorm:"foreignkey:PositionID;association_foreignkey:ID"`
 	PositionID int
+}
+
+func FindAllApplication() ([]Application, error) {
+	var applications []Application
+	err := config.GetDB().Find(&applications).Error
+	return applications, err
+}
+
+func FindApplicationById(id string) (Application, error) {
+	var application Application
+	err := config.GetDB().Where("id = ?", id).First(&application).Error
+	return application, err
+}
+
+func CreateApplication(application *Application) (*Application, error) {
+	err := config.GetDB().Create(&application).Error
+	return application, err
+
+}
+
+func UpdateApplication(application *Application) (*Application, error) {
+	err := config.GetDB().Save(&application).Error
+	return application, err
+
+}
+
+func DeleteApplication(id string) error {
+	return config.GetDB().Where("id = ?", id).Delete(&Application{}).Error
 }

@@ -2,6 +2,8 @@ package models
 
 import (
 	"time"
+
+	"github.com/kamalraimi/recruiter-api/config"
 )
 
 type Menu struct {
@@ -12,4 +14,32 @@ type Menu struct {
 	FileMenu  string
 	CreatedAt time.Time
 	UpdatedAt time.Time
+}
+
+func FindAllMenu() ([]Menu, error) {
+	var menus []Menu
+	err := config.GetDB().Find(&menus).Error
+	return menus, err
+}
+
+func FindMenuById(id string) (Menu, error) {
+	var menu Menu
+	err := config.GetDB().Where("id = ?", id).First(&menu).Error
+	return menu, err
+}
+
+func CreateMenu(menu *Menu) (*Menu, error) {
+	err := config.GetDB().Create(&menu).Error
+	return menu, err
+
+}
+
+func UpdateMenu(menu *Menu) (*Menu, error) {
+	err := config.GetDB().Save(&menu).Error
+	return menu, err
+
+}
+
+func DeleteMenu(id string) error {
+	return config.GetDB().Where("id = ?", id).Delete(&Menu{}).Error
 }

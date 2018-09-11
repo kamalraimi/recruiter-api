@@ -16,7 +16,7 @@ func main() {
 		&models.Role{},
 		&models.Collaborater{},
 		&models.Application{},
-		&models.Costumer{},
+		&models.Customer{},
 		&models.Immigration{},
 		&models.Menu{},
 		&models.Position{},

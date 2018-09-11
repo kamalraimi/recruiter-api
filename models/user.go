@@ -55,6 +55,6 @@ func UpdateUser(user *User) (uint, error) {
 	return user.ID, nil
 }
 
-func DeleteUser(id int) error {
+func DeleteUser(id string) error {
 	return config.GetDB().Where("id=?", id).Delete(&Role{}).Error
 }

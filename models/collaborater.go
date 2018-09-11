@@ -1,6 +1,10 @@
 package models
 
-import "time"
+import (
+	"time"
+
+	"github.com/kamalraimi/recruiter-api/config"
+)
 
 type Collaborater struct {
 	ID        uint   `gorm:"primary_key"`
@@ -20,4 +24,32 @@ type Collaborater struct {
 
 	Relocation   Relocation `gorm:"foreignkey:RelocationID;association_foreignkey:ID"`
 	RelocationID int
+}
+
+func FindAllCollaborater() ([]Collaborater, error) {
+	var collaboraters []Collaborater
+	err := config.GetDB().Find(&collaboraters).Error
+	return collaboraters, err
+}
+
+func FindCollaboraterById(id string) (Collaborater, error) {
+	var collaborater Collaborater
+	err := config.GetDB().Where("id = ?", id).First(&collaborater).Error
+	return collaborater, err
+}
+
+func CreateCollaborater(collaborater *Collaborater) (*Collaborater, error) {
+	err := config.GetDB().Create(&collaborater).Error
+	return collaborater, err
+
+}
+
+func UpdateCollaborater(collaborater *Collaborater) (*Collaborater, error) {
+	err := config.GetDB().Save(&collaborater).Error
+	return collaborater, err
+
+}
+
+func DeleteCollaborater(id string) error {
+	return config.GetDB().Where("id = ?", id).Delete(&Collaborater{}).Error
 }
