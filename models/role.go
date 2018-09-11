@@ -11,6 +11,8 @@ type Role struct {
 	Name      string `gorm:"not null" form:"name" json:"name"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
+
+	Menu []Menu `gorm:"many2many:role_menus;"`
 }
 
 func FindAllRole() ([]Role, error) {
@@ -39,4 +41,10 @@ func UpdateRole(role *Role) (*Role, error) {
 
 func DeleteRole(id string) error {
 	return config.GetDB().Where("id = ?", id).Delete(&Role{}).Error
+}
+
+func FindMenuByRole(role *Role) ([]Menu, error) {
+	var menus []Menu
+	err := config.GetDB().Model(&role).Related(&menus, "Menu").Error
+	return menus, err
 }

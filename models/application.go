@@ -14,4 +14,7 @@ type Application struct {
 	Status         string `sql:"type:enum('inProgress','validated','rejected');DEFAULT:'inProgress'"`
 	CreatedAt      time.Time
 	UpdatedAt      time.Time
+
+	Position   Position `gorm:"foreignkey:PositionID;association_foreignkey:ID"`
+	PositionID int
 }

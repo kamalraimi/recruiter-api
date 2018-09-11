@@ -14,6 +14,9 @@ type User struct {
 	Email     string `gorm:"type:varchar(100);unique_index"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
+
+	Role   Role `gorm:"foreignkey:RoleID;association_foreignkey:ID"`
+	RoleID int
 }
 
 func FindAllUser() ([]User, error) {
