@@ -7,9 +7,9 @@ import (
 )
 
 type User struct {
-	ID        uint `gorm:"primary_key"`
-	Login     string
-	Password  string
+	ID        uint   `gorm:"primary_key"`
+	Login     string `gorm:"type:varchar(50);unique_index"`
+	Password  string `gorm:"index"`
 	Name      string
 	Email     string `gorm:"type:varchar(100);unique_index"`
 	CreatedAt time.Time

@@ -11,10 +11,16 @@ func main() {
 
 	// Initialisation de la BD et generation des tables
 	config.InitDB()
-	config.GetDB().AutoMigrate(
+	config.GetDB().Debug().AutoMigrate(
 		&models.User{},
 		&models.Role{},
 		&models.Collaborater{},
+		&models.Application{},
+		&models.Costumer{},
+		&models.Immigration{},
+		&models.Menu{},
+		&models.Position{},
+		&models.Relocation{},
 	)
 
 	// Gestion du routage et demarrage du serveur
