@@ -26,6 +26,7 @@ func main() {
 	// Gestion du routage et demarrage du serveur
 	router := gin.Default()
 	router.RedirectTrailingSlash = true // Support de la barre oblique optionnelle les URLS
+
 	routing.Routes(router)
 	router.Run(":8080")
 

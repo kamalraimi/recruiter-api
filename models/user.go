@@ -38,6 +38,13 @@ func FindUserByName(name string) []User {
 
 }
 
+func AuthUser(login string, password string) (User, error) {
+	var user User
+	err := config.GetDB().Where("login=? AND password=?", login, password).Find(&user).Limit(1).Error
+	return user, err
+
+}
+
 func CreateUser(user *User) (uint, error) {
 	err := config.GetDB().Create(&user).Error
 	if err != nil {
