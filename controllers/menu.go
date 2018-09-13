@@ -7,6 +7,31 @@ import (
 	"github.com/kamalraimi/recruiter-api/models"
 )
 
+// @Summary Consultation des menus d'un user
+// @Description Utiliser l'id de l'user
+// @ID get-string-by-int
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Menu
+// @Router /menu/{id} [get]
+func GetMenusByUser(c *gin.Context) {
+	id := c.Params.ByName("id")
+	if menus, err := models.FindAllMenuByUser(id); err != nil {
+		c.AbortWithStatus(404)
+		fmt.Println(err)
+	} else {
+		c.JSON(200, menus)
+	}
+
+}
+
+// @Summary Consultation des menus
+// @Description Recupere les menus
+// @ID get-string-by-int
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Menu
+// @Router /menus/ [get]
 func GetMenus(c *gin.Context) {
 	if menus, err := models.FindAllMenu(); err != nil {
 		c.AbortWithStatus(404)
@@ -14,9 +39,15 @@ func GetMenus(c *gin.Context) {
 	} else {
 		c.JSON(200, menus)
 	}
-	// curl -i http://localhost:8080/menus/
+
 }
 
+// @Summary Consultation d'un menu
+// @Description Recupere un menu
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Menu
+// @Router /menus/{id} [get]
 func GetMenu(c *gin.Context) {
 	id := c.Params.ByName("id")
 	if menu, err := models.FindMenuById(id); err != nil {
@@ -25,9 +56,15 @@ func GetMenu(c *gin.Context) {
 	} else {
 		c.JSON(200, menu)
 	}
-	// curl -i http://localhost:8080/recruiter-api/menus/1
+
 }
 
+// @Summary Enregistrer un menu
+// @Description Stocke un menu
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Menu
+// @Router /menus/ [post]
 func PostMenu(c *gin.Context) {
 	var menu models.Menu
 	c.BindJSON(&menu)
@@ -38,9 +75,14 @@ func PostMenu(c *gin.Context) {
 		c.JSON(200, menu)
 	}
 
-	// curl -d '{"name":"admin"}' -H "Content-Type: application/json" -X POST http://localhost:8080/menus
 }
 
+// @Summary Modification d'un menu
+// @Description modifier un menu
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Menu
+// @Router /menus/{id} [put]
 func PutMenu(c *gin.Context) {
 
 	id := c.Params.ByName("id")
@@ -54,9 +96,14 @@ func PutMenu(c *gin.Context) {
 	menuUpdated, err := models.UpdateMenu(&menu)
 	c.JSON(200, &menuUpdated)
 
-	// curl -d '{"name":"admin_"}' -H "Content-Type: application/json" -X PUT http://localhost:8080/menus/1
 }
 
+// @Summary Suppression de menus
+// @Description supprime un menu
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Menu
+// @Router /menus/{id} [delete]
 func DeleteMenu(c *gin.Context) {
 	id := c.Params.ByName("id")
 	if err := models.DeleteMenu(id); err != nil {
@@ -65,7 +112,5 @@ func DeleteMenu(c *gin.Context) {
 		return
 	}
 	c.JSON(200, gin.H{"id #" + id: "deleted"})
-
-	// curl -i -X DELETE http://localhost:8080/menus/1
 
 }

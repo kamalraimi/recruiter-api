@@ -7,6 +7,13 @@ import (
 	"github.com/kamalraimi/recruiter-api/models"
 )
 
+// @Summary Consultation des candidatures
+// @Description Recupere les candidatures
+// @ID get-string-by-int
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Application
+// @Router /applications/ [get]
 func GetApplications(c *gin.Context) {
 	if applications, err := models.FindAllApplication(); err != nil {
 		c.AbortWithStatus(404)
@@ -14,9 +21,15 @@ func GetApplications(c *gin.Context) {
 	} else {
 		c.JSON(200, applications)
 	}
-	// curl -i http://localhost:8080/applications/
+
 }
 
+// @Summary Consultation d'une candidature donnée
+// @Description Recupere une candidature
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Application
+// @Router /applications/{id} [get]
 func GetApplication(c *gin.Context) {
 	id := c.Params.ByName("id")
 	if application, err := models.FindApplicationById(id); err != nil {
@@ -25,9 +38,15 @@ func GetApplication(c *gin.Context) {
 	} else {
 		c.JSON(200, application)
 	}
-	// curl -i http://localhost:8080/applications/1
+
 }
 
+// @Summary Enregistrer une candidature
+// @Description Stocke une candidature
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Application
+// @Router /applications [post]
 func PostApplication(c *gin.Context) {
 	var application models.Application
 	c.BindJSON(&application)
@@ -38,9 +57,14 @@ func PostApplication(c *gin.Context) {
 		c.JSON(200, application)
 	}
 
-	// curl -d '{"name":"admin"}' -H "Content-Type: application/json" -X POST http://localhost:8080/applications
 }
 
+// @Summary Modification de candidature
+// @Description modifier une candidature
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Application
+// @Router /applications/{id} [put]
 func PutApplication(c *gin.Context) {
 
 	id := c.Params.ByName("id")
@@ -55,9 +79,14 @@ func PutApplication(c *gin.Context) {
 	applicationUpdated, err := models.UpdateApplication(&application)
 	c.JSON(200, &applicationUpdated)
 
-	// curl -d '{"name":"admin_"}' -H "Content-Type: application/json" -X PUT http://localhost:8080/applications/1
 }
 
+// @Summary Suppression de candidature
+// @Description supprime une candidature
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Application
+// @Router /applications/{id} [delete]
 func DeleteApplication(c *gin.Context) {
 	id := c.Params.ByName("id")
 	if err := models.DeleteApplication(id); err != nil {
@@ -66,7 +95,5 @@ func DeleteApplication(c *gin.Context) {
 		return
 	}
 	c.JSON(200, gin.H{"id #" + id: "deleted"})
-
-	// curl -i -X DELETE http://localhost:8080/applications/1
 
 }

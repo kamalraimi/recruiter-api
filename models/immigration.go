@@ -14,6 +14,9 @@ type Immigration struct {
 	Status    string `sql:"type:enum('inProgress','completed','canceled');DEFAULT:'inProgress'"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
+
+	Collaborater   Collaborater `gorm:"foreignkey:CollaboraterID;association_foreignkey:ID"`
+	CollaboraterID int
 }
 
 func FindAllImmigration() ([]Immigration, error) {

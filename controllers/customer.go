@@ -7,6 +7,13 @@ import (
 	"github.com/kamalraimi/recruiter-api/models"
 )
 
+// @Summary Consultation des clients
+// @Description Recupere les clients
+// @ID get-string-by-int
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Customer
+// @Router /customers/ [get]
 func GetCustomers(c *gin.Context) {
 	if customers, err := models.FindAllCustomer(); err != nil {
 		c.AbortWithStatus(404)
@@ -14,9 +21,15 @@ func GetCustomers(c *gin.Context) {
 	} else {
 		c.JSON(200, customers)
 	}
-	// curl -i http://localhost:8080/customers/
+
 }
 
+// @Summary Consultation d'un client
+// @Description Recupere un client
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Customer
+// @Router /customers/{id} [get]
 func GetCustomer(c *gin.Context) {
 	id := c.Params.ByName("id")
 	if customer, err := models.FindCustomerById(id); err != nil {
@@ -25,9 +38,15 @@ func GetCustomer(c *gin.Context) {
 	} else {
 		c.JSON(200, customer)
 	}
-	// curl -i http://localhost:8080/customers/1
+
 }
 
+// @Summary Enregistrer un client
+// @Description Stocke un client
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Customer
+// @Router /customers/ [post]
 func PostCustomer(c *gin.Context) {
 	var customer models.Customer
 	c.BindJSON(&customer)
@@ -38,9 +57,14 @@ func PostCustomer(c *gin.Context) {
 		c.JSON(200, customer)
 	}
 
-	// curl -d '{"name":"admin"}' -H "Content-Type: application/json" -X POST http://localhost:8080/customers
 }
 
+// @Summary Modification d'un client
+// @Description modifier un client
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Customer
+// @Router /customers/{id} [put]
 func PutCustomer(c *gin.Context) {
 
 	id := c.Params.ByName("id")
@@ -55,9 +79,14 @@ func PutCustomer(c *gin.Context) {
 	customerUpdated, err := models.UpdateCustomer(&customer)
 	c.JSON(200, &customerUpdated)
 
-	// curl -d '{"name":"admin_"}' -H "Content-Type: application/json" -X PUT http://localhost:8080/customers/1
 }
 
+// @Summary Suppression de client
+// @Description supprime un client
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Customer
+// @Router /customers/{id} [delete]
 func DeleteCustomer(c *gin.Context) {
 	id := c.Params.ByName("id")
 	if err := models.DeleteCustomer(id); err != nil {
@@ -66,7 +95,5 @@ func DeleteCustomer(c *gin.Context) {
 		return
 	}
 	c.JSON(200, gin.H{"id #" + id: "deleted"})
-
-	// curl -i -X DELETE http://localhost:8080/customers/1
 
 }

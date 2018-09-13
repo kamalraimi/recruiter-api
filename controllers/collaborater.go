@@ -7,6 +7,13 @@ import (
 	"github.com/kamalraimi/recruiter-api/models"
 )
 
+// @Summary Consultation des collaborateurs
+// @Description Recupere les collaborateurs
+// @ID get-string-by-int
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Collaborater
+// @Router /collaboraters/ [get]
 func GetCollaboraters(c *gin.Context) {
 	if collaboraters, err := models.FindAllCollaborater(); err != nil {
 		c.AbortWithStatus(404)
@@ -14,9 +21,15 @@ func GetCollaboraters(c *gin.Context) {
 	} else {
 		c.JSON(200, collaboraters)
 	}
-	// curl -i http://localhost:8080/collaboraters/
+
 }
 
+// @Summary Consultation d'un collaborateur
+// @Description Recupere un collaborateur
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Collaborater
+// @Router /collaborater/{id} [get]
 func GetCollaborater(c *gin.Context) {
 	id := c.Params.ByName("id")
 	if collaborater, err := models.FindCollaboraterById(id); err != nil {
@@ -25,12 +38,19 @@ func GetCollaborater(c *gin.Context) {
 	} else {
 		c.JSON(200, collaborater)
 	}
-	// curl -i http://localhost:8080/collaboraters/1
+
 }
 
+// @Summary Enregistrer un collaborateur
+// @Description Stocke un collaborateur
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Collaborater
+// @Router /collaboraters/ [post]
 func PostCollaborater(c *gin.Context) {
 	var collaborater models.Collaborater
 	c.BindJSON(&collaborater)
+
 	if collaborater, err := models.CreateCollaborater(&collaborater); err != nil {
 		c.AbortWithStatus(404)
 		fmt.Println(err)
@@ -38,9 +58,14 @@ func PostCollaborater(c *gin.Context) {
 		c.JSON(200, collaborater)
 	}
 
-	// curl -d '{"name":"admin"}' -H "Content-Type: application/json" -X POST http://localhost:8080/roles
 }
 
+// @Summary Modification d'un collaborateur
+// @Description modifier un collaborateur
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Collaborater
+// @Router /collaboraters/{id} [put]
 func PutCollaborater(c *gin.Context) {
 
 	id := c.Params.ByName("id")
@@ -55,9 +80,14 @@ func PutCollaborater(c *gin.Context) {
 	collaboraterUpdated, err := models.UpdateCollaborater(&collaborater)
 	c.JSON(200, &collaboraterUpdated)
 
-	// curl -d '{"name":"admin_"}' -H "Content-Type: application/json" -X PUT http://localhost:8080/roles/1
 }
 
+// @Summary Suppression d'un collaborateur
+// @Description supprime un collaborateur
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Collaborater
+// @Router /collaboraters/{id} [delete]
 func DeleteCollaborater(c *gin.Context) {
 	id := c.Params.ByName("id")
 	if err := models.DeleteCollaborater(id); err != nil {
@@ -66,7 +96,5 @@ func DeleteCollaborater(c *gin.Context) {
 		return
 	}
 	c.JSON(200, gin.H{"id #" + id: "deleted"})
-
-	// curl -i -X DELETE http://localhost:8080/collaboraters/1
 
 }

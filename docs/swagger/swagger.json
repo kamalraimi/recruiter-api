@@ -1,0 +1,1261 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Recruiter-api est une API RESTFUL de gestion des recrutements.",
+        "title": "Recruiter API",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.swagger.io/support",
+            "email": "kamalraimi@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/recruiter-api",
+    "paths": {
+        "/applications": {
+            "post": {
+                "description": "Stocke une candidature",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Enregistrer une candidature",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Application"
+                        }
+                    }
+                }
+            }
+        },
+        "/applications/": {
+            "get": {
+                "description": "Recupere les candidatures",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Consultation des candidatures",
+                "operationId": "get-string-by-int",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Application"
+                        }
+                    }
+                }
+            }
+        },
+        "/applications/{id}": {
+            "get": {
+                "description": "Recupere une candidature",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Consultation d'une candidature donnée",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Application"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "modifier une candidature",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Modification de candidature",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Application"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "supprime une candidature",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Suppression de candidature",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Application"
+                        }
+                    }
+                }
+            }
+        },
+        "/collaborater/{id}": {
+            "get": {
+                "description": "Recupere un collaborateur",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Consultation d'un collaborateur",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Collaborater"
+                        }
+                    }
+                }
+            }
+        },
+        "/collaboraters/": {
+            "get": {
+                "description": "Recupere les collaborateurs",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Consultation des collaborateurs",
+                "operationId": "get-string-by-int",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Collaborater"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Stocke un collaborateur",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Enregistrer un collaborateur",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Collaborater"
+                        }
+                    }
+                }
+            }
+        },
+        "/collaboraters/{id}": {
+            "put": {
+                "description": "modifier un collaborateur",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Modification d'un collaborateur",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Collaborater"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "supprime un collaborateur",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Suppression d'un collaborateur",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Collaborater"
+                        }
+                    }
+                }
+            }
+        },
+        "/customers/": {
+            "get": {
+                "description": "Recupere les clients",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Consultation des clients",
+                "operationId": "get-string-by-int",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Customer"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Stocke un client",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Enregistrer un client",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Customer"
+                        }
+                    }
+                }
+            }
+        },
+        "/customers/{id}": {
+            "get": {
+                "description": "Recupere un client",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Consultation d'un client",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Customer"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "modifier un client",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Modification d'un client",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Customer"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "supprime un client",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Suppression de client",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Customer"
+                        }
+                    }
+                }
+            }
+        },
+        "/immigrations/": {
+            "get": {
+                "description": "Recupere les prj d'immigration",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Consultation des prj d'immigration",
+                "operationId": "get-string-by-int",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Immigration"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Stocke un prj d'immigration",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Enregistrer un prj d'immigration",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Immigration"
+                        }
+                    }
+                }
+            }
+        },
+        "/immigrations/{id}": {
+            "get": {
+                "description": "Recupere un prj d'immigration",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Consultation d'un prj d'immigration",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Immigration"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "modifier un prj d'immigration",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Modification d'un prj d'immigration",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Immigration"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "supprime un prj d'immigration",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Suppression d'un prj d'immigration",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Immigration"
+                        }
+                    }
+                }
+            }
+        },
+        "/menu/{id}": {
+            "get": {
+                "description": "Utiliser l'id de l'user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Consultation des menus d'un user",
+                "operationId": "get-string-by-int",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Menu"
+                        }
+                    }
+                }
+            }
+        },
+        "/menus/": {
+            "get": {
+                "description": "Recupere les menus",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Consultation des menus",
+                "operationId": "get-string-by-int",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Menu"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Stocke un menu",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Enregistrer un menu",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Menu"
+                        }
+                    }
+                }
+            }
+        },
+        "/menus/{id}": {
+            "get": {
+                "description": "Recupere un menu",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Consultation d'un menu",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Menu"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "modifier un menu",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Modification d'un menu",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Menu"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "supprime un menu",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Suppression de menus",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Menu"
+                        }
+                    }
+                }
+            }
+        },
+        "/positions/": {
+            "get": {
+                "description": "Recupere des offres d'emploi",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Consultation des offres d'emploi",
+                "operationId": "get-string-by-int",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Position"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Stocke une offre d'emploi",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Enregistrer une offre d'emploi",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Position"
+                        }
+                    }
+                }
+            }
+        },
+        "/positions/{id}": {
+            "get": {
+                "description": "Recupere d'une offre d'emploi",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Consultation d'une offre d'emploi",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Menu"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "modifier une offre d'emploi",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Modification d'une offre d'emploi",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Position"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "supprime une offre d'emploi",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Suppression d'une offre d'emploi",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Position"
+                        }
+                    }
+                }
+            }
+        },
+        "/relocations/": {
+            "get": {
+                "description": "Recupere les relocations",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Consultation des relocations",
+                "operationId": "get-string-by-int",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Relocation"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Stocke un prj de reloc",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Enregistrer un prj de reloc",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Relocation"
+                        }
+                    }
+                }
+            }
+        },
+        "/relocations/{id}": {
+            "get": {
+                "description": "Recupere d'un prj de reloc",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Consultation d'un prj de reloc",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Relocation"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "modifier un prj de reloc",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Modification d'un prj de reloc",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Relocation"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "supprime d'un prj de reloc",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Suppression d'un prj de reloc",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Relocation"
+                        }
+                    }
+                }
+            }
+        },
+        "/roles/": {
+            "get": {
+                "description": "Recupere les roles",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Consultation des roles",
+                "operationId": "get-string-by-int",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Role"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Stocke un role",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Enregistrer un role",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Role"
+                        }
+                    }
+                }
+            }
+        },
+        "/roles/{id}": {
+            "get": {
+                "description": "Recupere d'un rôle",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Consultation d'un rôle",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Role"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "modifier un role",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Modification d'un role",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Role"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "supprime un role",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Suppression de role",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Role"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/": {
+            "get": {
+                "description": "Recupere les comptes",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Consultation des comptes",
+                "operationId": "get-string-by-int",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.User"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Stocke un compte",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Enregistrer un compte",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.User"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "get": {
+                "description": "Recupere d'un compte",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Consultation d'un compte",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.User"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "modifier un user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Modification d'un user",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.User"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "supprime une compte",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Suppression de compte",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.User"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.Application": {
+            "type": "object",
+            "properties": {
+                "birthDay": {
+                    "type": "string"
+                },
+                "civility": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "expectedSalary": {
+                    "type": "number"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "position": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Position"
+                },
+                "postID": {
+                    "type": "integer"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "step": {
+                    "type": "string"
+                },
+                "tel": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Collaborater": {
+            "type": "object",
+            "properties": {
+                "application": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Application"
+                },
+                "applicationID": {
+                    "type": "integer"
+                },
+                "civility": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "tel": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Customer": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "fax": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "representative": {
+                    "type": "string"
+                },
+                "tel": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Immigration": {
+            "type": "object",
+            "properties": {
+                "collaborater": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Collaborater"
+                },
+                "collaboraterID": {
+                    "type": "integer"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "endDate": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "startDate": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "visa": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "models.Menu": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "file_menu": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "url_icon": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Position": {
+            "type": "object",
+            "properties": {
+                "contractType": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "customer": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Customer"
+                },
+                "customerID": {
+                    "type": "integer"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "isAvailable": {
+                    "type": "boolean"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Relocation": {
+            "type": "object",
+            "properties": {
+                "accomodated": {
+                    "type": "boolean"
+                },
+                "address": {
+                    "type": "string"
+                },
+                "collaborater": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Collaborater"
+                },
+                "collaboraterID": {
+                    "type": "integer"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "electricity_subscriber": {
+                    "type": "boolean"
+                },
+                "end_date": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "start_date": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "telephone_subscriber": {
+                    "type": "boolean"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Role": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "menu": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Menu"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.User": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "login": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Role"
+                },
+                "roleID": {
+                    "type": "integer"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "BasicAuth": {
+            "type": "basic"
+        }
+    }
+}

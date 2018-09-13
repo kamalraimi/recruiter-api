@@ -7,6 +7,13 @@ import (
 	"github.com/kamalraimi/recruiter-api/models"
 )
 
+// @Summary Consultation des relocations
+// @Description Recupere les relocations
+// @ID get-string-by-int
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Relocation
+// @Router /relocations/ [get]
 func GetRelocations(c *gin.Context) {
 	if relocations, err := models.FindAllRelocation(); err != nil {
 		c.AbortWithStatus(404)
@@ -14,9 +21,15 @@ func GetRelocations(c *gin.Context) {
 	} else {
 		c.JSON(200, relocations)
 	}
-	// curl -i http://localhost:8080/relocations/
+
 }
 
+// @Summary Consultation d'un prj de reloc
+// @Description Recupere d'un prj de reloc
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Relocation
+// @Router /relocations/{id} [get]
 func GetRelocation(c *gin.Context) {
 	id := c.Params.ByName("id")
 	if relocation, err := models.FindRelocationById(id); err != nil {
@@ -25,9 +38,15 @@ func GetRelocation(c *gin.Context) {
 	} else {
 		c.JSON(200, relocation)
 	}
-	// curl -i http://localhost:8080/relocations/1
+
 }
 
+// @Summary Enregistrer un prj de reloc
+// @Description Stocke un prj de reloc
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Relocation
+// @Router /relocations/ [post]
 func PostRelocation(c *gin.Context) {
 	var relocation models.Relocation
 	c.BindJSON(&relocation)
@@ -38,9 +57,14 @@ func PostRelocation(c *gin.Context) {
 		c.JSON(200, relocation)
 	}
 
-	// curl -d '{"name":"admin"}' -H "Content-Type: application/json" -X POST http://localhost:8080/relocations
 }
 
+// @Summary Modification d'un prj de reloc
+// @Description modifier un prj de reloc
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Relocation
+// @Router /relocations/{id} [put]
 func PutRelocation(c *gin.Context) {
 
 	id := c.Params.ByName("id")
@@ -55,9 +79,14 @@ func PutRelocation(c *gin.Context) {
 	relocationUpdated, err := models.UpdateRelocation(&relocation)
 	c.JSON(200, &relocationUpdated)
 
-	// curl -d '{"name":"admin_"}' -H "Content-Type: application/json" -X PUT http://localhost:8080/relocations/1
 }
 
+// @Summary Suppression d'un prj de reloc
+// @Description supprime d'un prj de reloc
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Relocation
+// @Router /relocations/{id} [delete]
 func DeleteRelocation(c *gin.Context) {
 	id := c.Params.ByName("id")
 	if err := models.DeleteRelocation(id); err != nil {
@@ -66,7 +95,5 @@ func DeleteRelocation(c *gin.Context) {
 		return
 	}
 	c.JSON(200, gin.H{"id #" + id: "deleted"})
-
-	// curl -i -X DELETE http://localhost:8080/relocations/1
 
 }

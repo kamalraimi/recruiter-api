@@ -7,6 +7,13 @@ import (
 	"github.com/kamalraimi/recruiter-api/models"
 )
 
+// @Summary Consultation des prj d'immigration
+// @Description Recupere les prj d'immigration
+// @ID get-string-by-int
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Immigration
+// @Router /immigrations/ [get]
 func GetImmigrations(c *gin.Context) {
 	if immigrations, err := models.FindAllImmigration(); err != nil {
 		c.AbortWithStatus(404)
@@ -14,9 +21,15 @@ func GetImmigrations(c *gin.Context) {
 	} else {
 		c.JSON(200, immigrations)
 	}
-	// curl -i http://localhost:8080/immigrations/
+
 }
 
+// @Summary Consultation d'un prj d'immigration
+// @Description Recupere un prj d'immigration
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Immigration
+// @Router /immigrations/{id} [get]
 func GetImmigration(c *gin.Context) {
 	id := c.Params.ByName("id")
 	if immigration, err := models.FindImmigrationById(id); err != nil {
@@ -25,9 +38,15 @@ func GetImmigration(c *gin.Context) {
 	} else {
 		c.JSON(200, immigration)
 	}
-	// curl -i http://localhost:8080/immigrations/1
+
 }
 
+// @Summary Enregistrer un prj d'immigration
+// @Description Stocke un prj d'immigration
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Immigration
+// @Router /immigrations/ [post]
 func PostImmigration(c *gin.Context) {
 	var immigration models.Immigration
 	c.BindJSON(&immigration)
@@ -38,9 +57,14 @@ func PostImmigration(c *gin.Context) {
 		c.JSON(200, immigration)
 	}
 
-	// curl -d '{"name":"admin"}' -H "Content-Type: application/json" -X POST http://localhost:8080/roles
 }
 
+// @Summary Modification d'un prj d'immigration
+// @Description modifier un prj d'immigration
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Immigration
+// @Router /immigrations/{id} [put]
 func PutImmigration(c *gin.Context) {
 
 	id := c.Params.ByName("id")
@@ -55,9 +79,14 @@ func PutImmigration(c *gin.Context) {
 	immigrationUpdated, err := models.UpdateImmigration(&immigration)
 	c.JSON(200, &immigrationUpdated)
 
-	// curl -d '{"name":"admin_"}' -H "Content-Type: application/json" -X PUT http://localhost:8080/roles/1
 }
 
+// @Summary Suppression d'un prj d'immigration
+// @Description supprime un prj d'immigration
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Immigration
+// @Router /immigrations/{id} [delete]
 func DeleteImmigration(c *gin.Context) {
 	id := c.Params.ByName("id")
 	if err := models.DeleteImmigration(id); err != nil {
@@ -66,7 +95,5 @@ func DeleteImmigration(c *gin.Context) {
 		return
 	}
 	c.JSON(200, gin.H{"id #" + id: "deleted"})
-
-	// curl -i -X DELETE http://localhost:8080/immigrations/1
 
 }

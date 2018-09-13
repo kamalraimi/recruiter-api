@@ -7,16 +7,19 @@ import (
 )
 
 type Relocation struct {
-	ID                    uint `gorm:"primary_key" form:"id" json:"id"`
-	StartDate             time.Time
-	EndDate               time.Time
-	Accomodated           bool
-	Address               string
-	TelephoneSubscriber   bool
-	ElectricitySubscriber bool
+	ID                    uint   `gorm:"primary_key" form:"id" json:"id"`
+	StartDate             string `gorm:"not null" form:"start_date" json:"start_date"`
+	EndDate               string `gorm:"not null" form:"end_date" json:"end_date"`
+	Accomodated           bool   `sql:"DEFAULT:0" form:"accomodated" json:"accomodated" `
+	Address               string `gorm:"type:varchar(255)" form:"address" json:"address"`
+	TelephoneSubscriber   bool   `sql:"DEFAULT:0" form:"telephone_subscriber" json:"telephone_subscriber"`
+	ElectricitySubscriber bool   `sql:"DEFAULT:0" form:"electricity_subscriber" json:"electricity_subscriber"`
 	Status                string `sql:"type:enum('waiting','inProgress','completed','canceled');DEFAULT:'waiting'"`
 	CreatedAt             time.Time
 	UpdatedAt             time.Time
+
+	Collaborater   Collaborater `gorm:"foreignkey:CollaboraterID;association_foreignkey:ID" json:"collaborater"`
+	CollaboraterID int
 }
 
 func FindAllRelocation() ([]Relocation, error) {

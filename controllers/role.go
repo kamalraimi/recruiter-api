@@ -7,6 +7,13 @@ import (
 	"github.com/kamalraimi/recruiter-api/models"
 )
 
+// @Summary Consultation des roles
+// @Description Recupere les roles
+// @ID get-string-by-int
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Role
+// @Router /roles/ [get]
 func GetRoles(c *gin.Context) {
 	if roles, err := models.FindAllRole(); err != nil {
 		c.AbortWithStatus(404)
@@ -14,9 +21,15 @@ func GetRoles(c *gin.Context) {
 	} else {
 		c.JSON(200, roles)
 	}
-	// curl -i http://localhost:8080/roles/
+
 }
 
+// @Summary Consultation d'un rôle
+// @Description Recupere d'un rôle
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Role
+// @Router /roles/{id} [get]
 func GetRole(c *gin.Context) {
 	id := c.Params.ByName("id")
 	if role, err := models.FindRoleById(id); err != nil {
@@ -25,9 +38,15 @@ func GetRole(c *gin.Context) {
 	} else {
 		c.JSON(200, role)
 	}
-	// curl -i http://localhost:8080/roles/1
+
 }
 
+// @Summary Enregistrer un role
+// @Description Stocke un role
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Role
+// @Router /roles/ [post]
 func PostRole(c *gin.Context) {
 	var role models.Role
 	c.BindJSON(&role)
@@ -38,9 +57,14 @@ func PostRole(c *gin.Context) {
 		c.JSON(200, role)
 	}
 
-	// curl -d '{"name":"admin"}' -H "Content-Type: application/json" -X POST http://localhost:8080/roles
 }
 
+// @Summary Modification d'un role
+// @Description modifier un role
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Role
+// @Router /roles/{id} [put]
 func PutRole(c *gin.Context) {
 
 	id := c.Params.ByName("id")
@@ -55,9 +79,14 @@ func PutRole(c *gin.Context) {
 	roleUpdated, err := models.UpdateRole(&role)
 	c.JSON(200, &roleUpdated)
 
-	// curl -d '{"name":"admin_"}' -H "Content-Type: application/json" -X PUT http://localhost:8080/roles/1
 }
 
+// @Summary Suppression de role
+// @Description supprime un role
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Role
+// @Router /roles/{id} [delete]
 func DeleteRole(c *gin.Context) {
 	id := c.Params.ByName("id")
 	if err := models.DeleteRole(id); err != nil {
@@ -66,7 +95,5 @@ func DeleteRole(c *gin.Context) {
 		return
 	}
 	c.JSON(200, gin.H{"id #" + id: "deleted"})
-
-	// curl -i -X DELETE http://localhost:8080/roles/1
 
 }

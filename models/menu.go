@@ -1,6 +1,7 @@
 package models
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/kamalraimi/recruiter-api/config"
@@ -19,6 +20,17 @@ type Menu struct {
 func FindAllMenu() ([]Menu, error) {
 	var menus []Menu
 	err := config.GetDB().Find(&menus).Error
+	return menus, err
+}
+
+func FindAllMenuByUser(id string) ([]Menu, error) {
+	var menus []Menu
+	role, err := FindRoleById(id)
+	if err == nil {
+		err = config.GetDB().Joins("JOIN role_menus on role_menus.menu_id=menu.id").
+			Where("role_menus.role_id=?", role.ID).Find(&menus).Error
+		fmt.Println(menus)
+	}
 	return menus, err
 }
 

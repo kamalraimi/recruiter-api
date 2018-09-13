@@ -7,6 +7,13 @@ import (
 	"github.com/kamalraimi/recruiter-api/models"
 )
 
+// @Summary Consultation des comptes
+// @Description Recupere les comptes
+// @ID get-string-by-int
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.User
+// @Router /users/ [get]
 func GetUsers(c *gin.Context) {
 	if users, err := models.FindAllUser(); err != nil {
 		c.AbortWithStatus(404)
@@ -14,9 +21,14 @@ func GetUsers(c *gin.Context) {
 	} else {
 		c.JSON(200, users)
 	}
-	// curl -i http://localhost:8080/users/
 }
 
+// @Summary Consultation d'un compte
+// @Description Recupere d'un compte
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.User
+// @Router /users/{id} [get]
 func GetUser(c *gin.Context) {
 	id := c.Params.ByName("id")
 	if user, err := models.FindUserById(id); err != nil {
@@ -25,9 +37,14 @@ func GetUser(c *gin.Context) {
 	} else {
 		c.JSON(200, user)
 	}
-	// curl -i http://localhost:8080/users/1
 }
 
+// @Summary Enregistrer un compte
+// @Description Stocke un compte
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.User
+// @Router /users/ [post]
 func PostUser(c *gin.Context) {
 	var user models.User
 	c.BindJSON(&user)
@@ -38,9 +55,14 @@ func PostUser(c *gin.Context) {
 		c.JSON(200, user)
 	}
 
-	// curl -d '{"name":"admin"}' -H "Content-Type: application/json" -X POST http://localhost:8080/users
 }
 
+// @Summary Modification d'un user
+// @Description modifier un user
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.User
+// @Router /users/{id} [put]
 func PutUser(c *gin.Context) {
 
 	id := c.Params.ByName("id")
@@ -55,9 +77,14 @@ func PutUser(c *gin.Context) {
 	userUpdated, err := models.UpdateUser(&user)
 	c.JSON(200, &userUpdated)
 
-	// curl -d '{"name":"admin_"}' -H "Content-Type: application/json" -X PUT http://localhost:8080/users/1
 }
 
+// @Summary Suppression de compte
+// @Description supprime une compte
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.User
+// @Router /users/{id} [delete]
 func DeleteUser(c *gin.Context) {
 	id := c.Params.ByName("id")
 	if err := models.DeleteUser(id); err != nil {
@@ -66,7 +93,4 @@ func DeleteUser(c *gin.Context) {
 		return
 	}
 	c.JSON(200, gin.H{"id #" + id: "deleted"})
-
-	// curl -i -X DELETE http://localhost:8080/users/1
-
 }

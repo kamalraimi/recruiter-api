@@ -9,21 +9,14 @@ import (
 type Collaborater struct {
 	ID        uint   `gorm:"primary_key"`
 	Civility  string `sql:"type:enum('mr','mrs','miss');DEFAULT:'mr'"`
-	Name      string `gorm:"type:varchar(100);index"`
-	BirthDay  time.Time
-	Email     string `gorm:"type:varchar(100);unique_index"`
-	Tel       string
+	Name      string `gorm:"type:varchar(100);index" form:"name" json:"name"`
+	Email     string `gorm:"type:varchar(100);unique_index" form:"email" json:"email"`
+	Tel       string `form:"tel" json:"tel" form:"tel" json:"tel"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
 
-	Application   Application `gorm:"foreignkey:ApplicationID;association_foreignkey:ID"`
+	Application   Application `gorm:"PRELOAD:false; foreignkey:ApplicationID;association_foreignkey:ID" `
 	ApplicationID int
-
-	Immigration   Immigration `gorm:"foreignkey:ImmigrationID;association_foreignkey:ID"`
-	ImmigrationID int
-
-	Relocation   Relocation `gorm:"foreignkey:RelocationID;association_foreignkey:ID"`
-	RelocationID int
 }
 
 func FindAllCollaborater() ([]Collaborater, error) {
@@ -39,7 +32,7 @@ func FindCollaboraterById(id string) (Collaborater, error) {
 }
 
 func CreateCollaborater(collaborater *Collaborater) (*Collaborater, error) {
-	err := config.GetDB().Create(&collaborater).Error
+	err := config.GetDB().Debug().Create(&collaborater).Error
 	return collaborater, err
 
 }

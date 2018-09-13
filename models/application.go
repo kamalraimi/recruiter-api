@@ -19,8 +19,8 @@ type Application struct {
 	CreatedAt      time.Time
 	UpdatedAt      time.Time
 
-	Position   Position `gorm:"foreignkey:PositionID;association_foreignkey:ID"`
-	PositionID int
+	Position Position `gorm:"foreignkey:PostID;association_foreignkey:ID"`
+	PostID   int
 }
 
 func FindAllApplication() ([]Application, error) {

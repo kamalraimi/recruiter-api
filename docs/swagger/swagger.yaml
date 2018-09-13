@@ -1,0 +1,852 @@
+basePath: /recruiter-api
+definitions:
+  models.Application:
+    properties:
+      birthDay:
+        type: string
+      civility:
+        type: string
+      createdAt:
+        type: string
+      email:
+        type: string
+      expectedSalary:
+        type: number
+      id:
+        type: integer
+      name:
+        type: string
+      position:
+        $ref: '#/definitions/models.Position'
+        type: object
+      postID:
+        type: integer
+      status:
+        type: string
+      step:
+        type: string
+      tel:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  models.Collaborater:
+    properties:
+      application:
+        $ref: '#/definitions/models.Application'
+        type: object
+      applicationID:
+        type: integer
+      civility:
+        type: string
+      createdAt:
+        type: string
+      email:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      tel:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  models.Customer:
+    properties:
+      createdAt:
+        type: string
+      description:
+        type: string
+      email:
+        type: string
+      fax:
+        type: string
+      id:
+        type: integer
+      location:
+        type: string
+      name:
+        type: string
+      representative:
+        type: string
+      tel:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  models.Immigration:
+    properties:
+      collaborater:
+        $ref: '#/definitions/models.Collaborater'
+        type: object
+      collaboraterID:
+        type: integer
+      createdAt:
+        type: string
+      endDate:
+        type: string
+      id:
+        type: integer
+      startDate:
+        type: string
+      status:
+        type: string
+      updatedAt:
+        type: string
+      visa:
+        type: boolean
+    type: object
+  models.Menu:
+    properties:
+      createdAt:
+        type: string
+      file_menu:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      type:
+        type: string
+      updatedAt:
+        type: string
+      url_icon:
+        type: string
+    type: object
+  models.Position:
+    properties:
+      contractType:
+        type: string
+      createdAt:
+        type: string
+      customer:
+        $ref: '#/definitions/models.Customer'
+        type: object
+      customerID:
+        type: integer
+      description:
+        type: string
+      id:
+        type: integer
+      isAvailable:
+        type: boolean
+      location:
+        type: string
+      name:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  models.Relocation:
+    properties:
+      accomodated:
+        type: boolean
+      address:
+        type: string
+      collaborater:
+        $ref: '#/definitions/models.Collaborater'
+        type: object
+      collaboraterID:
+        type: integer
+      createdAt:
+        type: string
+      electricity_subscriber:
+        type: boolean
+      end_date:
+        type: string
+      id:
+        type: integer
+      start_date:
+        type: string
+      status:
+        type: string
+      telephone_subscriber:
+        type: boolean
+      updatedAt:
+        type: string
+    type: object
+  models.Role:
+    properties:
+      createdAt:
+        type: string
+      id:
+        type: integer
+      menu:
+        items:
+          $ref: '#/definitions/models.Menu'
+        type: array
+      name:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  models.User:
+    properties:
+      createdAt:
+        type: string
+      email:
+        type: string
+      id:
+        type: integer
+      login:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+      role:
+        $ref: '#/definitions/models.Role'
+        type: object
+      roleID:
+        type: integer
+      updatedAt:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: kamalraimi@gmail.com
+    name: API Support
+    url: http://www.swagger.io/support
+  description: Recruiter-api est une API RESTFUL de gestion des recrutements.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Recruiter API
+  version: "1.0"
+paths:
+  /applications:
+    post:
+      consumes:
+      - application/json
+      description: Stocke une candidature
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Application'
+            type: object
+      summary: Enregistrer une candidature
+  /applications/:
+    get:
+      consumes:
+      - application/json
+      description: Recupere les candidatures
+      operationId: get-string-by-int
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Application'
+            type: object
+      summary: Consultation des candidatures
+  /applications/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: supprime une candidature
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Application'
+            type: object
+      summary: Suppression de candidature
+    get:
+      consumes:
+      - application/json
+      description: Recupere une candidature
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Application'
+            type: object
+      summary: Consultation d'une candidature donnée
+    put:
+      consumes:
+      - application/json
+      description: modifier une candidature
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Application'
+            type: object
+      summary: Modification de candidature
+  /collaborater/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Recupere un collaborateur
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Collaborater'
+            type: object
+      summary: Consultation d'un collaborateur
+  /collaboraters/:
+    get:
+      consumes:
+      - application/json
+      description: Recupere les collaborateurs
+      operationId: get-string-by-int
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Collaborater'
+            type: object
+      summary: Consultation des collaborateurs
+    post:
+      consumes:
+      - application/json
+      description: Stocke un collaborateur
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Collaborater'
+            type: object
+      summary: Enregistrer un collaborateur
+  /collaboraters/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: supprime un collaborateur
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Collaborater'
+            type: object
+      summary: Suppression d'un collaborateur
+    put:
+      consumes:
+      - application/json
+      description: modifier un collaborateur
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Collaborater'
+            type: object
+      summary: Modification d'un collaborateur
+  /customers/:
+    get:
+      consumes:
+      - application/json
+      description: Recupere les clients
+      operationId: get-string-by-int
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Customer'
+            type: object
+      summary: Consultation des clients
+    post:
+      consumes:
+      - application/json
+      description: Stocke un client
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Customer'
+            type: object
+      summary: Enregistrer un client
+  /customers/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: supprime un client
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Customer'
+            type: object
+      summary: Suppression de client
+    get:
+      consumes:
+      - application/json
+      description: Recupere un client
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Customer'
+            type: object
+      summary: Consultation d'un client
+    put:
+      consumes:
+      - application/json
+      description: modifier un client
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Customer'
+            type: object
+      summary: Modification d'un client
+  /immigrations/:
+    get:
+      consumes:
+      - application/json
+      description: Recupere les prj d'immigration
+      operationId: get-string-by-int
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Immigration'
+            type: object
+      summary: Consultation des prj d'immigration
+    post:
+      consumes:
+      - application/json
+      description: Stocke un prj d'immigration
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Immigration'
+            type: object
+      summary: Enregistrer un prj d'immigration
+  /immigrations/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: supprime un prj d'immigration
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Immigration'
+            type: object
+      summary: Suppression d'un prj d'immigration
+    get:
+      consumes:
+      - application/json
+      description: Recupere un prj d'immigration
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Immigration'
+            type: object
+      summary: Consultation d'un prj d'immigration
+    put:
+      consumes:
+      - application/json
+      description: modifier un prj d'immigration
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Immigration'
+            type: object
+      summary: Modification d'un prj d'immigration
+  /menu/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Utiliser l'id de l'user
+      operationId: get-string-by-int
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Menu'
+            type: object
+      summary: Consultation des menus d'un user
+  /menus/:
+    get:
+      consumes:
+      - application/json
+      description: Recupere les menus
+      operationId: get-string-by-int
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Menu'
+            type: object
+      summary: Consultation des menus
+    post:
+      consumes:
+      - application/json
+      description: Stocke un menu
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Menu'
+            type: object
+      summary: Enregistrer un menu
+  /menus/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: supprime un menu
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Menu'
+            type: object
+      summary: Suppression de menus
+    get:
+      consumes:
+      - application/json
+      description: Recupere un menu
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Menu'
+            type: object
+      summary: Consultation d'un menu
+    put:
+      consumes:
+      - application/json
+      description: modifier un menu
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Menu'
+            type: object
+      summary: Modification d'un menu
+  /positions/:
+    get:
+      consumes:
+      - application/json
+      description: Recupere des offres d'emploi
+      operationId: get-string-by-int
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Position'
+            type: object
+      summary: Consultation des offres d'emploi
+    post:
+      consumes:
+      - application/json
+      description: Stocke une offre d'emploi
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Position'
+            type: object
+      summary: Enregistrer une offre d'emploi
+  /positions/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: supprime une offre d'emploi
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Position'
+            type: object
+      summary: Suppression d'une offre d'emploi
+    get:
+      consumes:
+      - application/json
+      description: Recupere d'une offre d'emploi
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Menu'
+            type: object
+      summary: Consultation d'une offre d'emploi
+    put:
+      consumes:
+      - application/json
+      description: modifier une offre d'emploi
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Position'
+            type: object
+      summary: Modification d'une offre d'emploi
+  /relocations/:
+    get:
+      consumes:
+      - application/json
+      description: Recupere les relocations
+      operationId: get-string-by-int
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Relocation'
+            type: object
+      summary: Consultation des relocations
+    post:
+      consumes:
+      - application/json
+      description: Stocke un prj de reloc
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Relocation'
+            type: object
+      summary: Enregistrer un prj de reloc
+  /relocations/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: supprime d'un prj de reloc
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Relocation'
+            type: object
+      summary: Suppression d'un prj de reloc
+    get:
+      consumes:
+      - application/json
+      description: Recupere d'un prj de reloc
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Relocation'
+            type: object
+      summary: Consultation d'un prj de reloc
+    put:
+      consumes:
+      - application/json
+      description: modifier un prj de reloc
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Relocation'
+            type: object
+      summary: Modification d'un prj de reloc
+  /roles/:
+    get:
+      consumes:
+      - application/json
+      description: Recupere les roles
+      operationId: get-string-by-int
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Role'
+            type: object
+      summary: Consultation des roles
+    post:
+      consumes:
+      - application/json
+      description: Stocke un role
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Role'
+            type: object
+      summary: Enregistrer un role
+  /roles/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: supprime un role
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Role'
+            type: object
+      summary: Suppression de role
+    get:
+      consumes:
+      - application/json
+      description: Recupere d'un rôle
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Role'
+            type: object
+      summary: Consultation d'un rôle
+    put:
+      consumes:
+      - application/json
+      description: modifier un role
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Role'
+            type: object
+      summary: Modification d'un role
+  /users/:
+    get:
+      consumes:
+      - application/json
+      description: Recupere les comptes
+      operationId: get-string-by-int
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+            type: object
+      summary: Consultation des comptes
+    post:
+      consumes:
+      - application/json
+      description: Stocke un compte
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+            type: object
+      summary: Enregistrer un compte
+  /users/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: supprime une compte
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+            type: object
+      summary: Suppression de compte
+    get:
+      consumes:
+      - application/json
+      description: Recupere d'un compte
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+            type: object
+      summary: Consultation d'un compte
+    put:
+      consumes:
+      - application/json
+      description: modifier un user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+            type: object
+      summary: Modification d'un user
+securityDefinitions:
+  BasicAuth:
+    type: basic
+swagger: "2.0"

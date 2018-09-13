@@ -7,6 +7,13 @@ import (
 	"github.com/kamalraimi/recruiter-api/models"
 )
 
+// @Summary Consultation des offres d'emploi
+// @Description Recupere des offres d'emploi
+// @ID get-string-by-int
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Position
+// @Router /positions/ [get]
 func GetPositions(c *gin.Context) {
 	if positions, err := models.FindAllPosition(); err != nil {
 		c.AbortWithStatus(404)
@@ -14,9 +21,15 @@ func GetPositions(c *gin.Context) {
 	} else {
 		c.JSON(200, positions)
 	}
-	// curl -i http://localhost:8080/positions/
+
 }
 
+// @Summary Consultation d'une offre d'emploi
+// @Description Recupere d'une offre d'emploi
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Menu
+// @Router /positions/{id} [get]
 func GetPosition(c *gin.Context) {
 	id := c.Params.ByName("id")
 	if position, err := models.FindPositionById(id); err != nil {
@@ -25,9 +38,15 @@ func GetPosition(c *gin.Context) {
 	} else {
 		c.JSON(200, position)
 	}
-	// curl -i http://localhost:8080/positions/1
+
 }
 
+// @Summary Enregistrer une offre d'emploi
+// @Description Stocke une offre d'emploi
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Position
+// @Router /positions/ [post]
 func PostPosition(c *gin.Context) {
 	var position models.Position
 	c.BindJSON(&position)
@@ -38,9 +57,14 @@ func PostPosition(c *gin.Context) {
 		c.JSON(200, position)
 	}
 
-	// curl -d '{"name":"admin"}' -H "Content-Type: application/json" -X POST http://localhost:8080/positions
 }
 
+// @Summary Modification d'une offre d'emploi
+// @Description modifier une offre d'emploi
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Position
+// @Router /positions/{id} [put]
 func PutPosition(c *gin.Context) {
 
 	id := c.Params.ByName("id")
@@ -55,9 +79,14 @@ func PutPosition(c *gin.Context) {
 	positionUpdated, err := models.UpdatePosition(&position)
 	c.JSON(200, &positionUpdated)
 
-	// curl -d '{"name":"admin_"}' -H "Content-Type: application/json" -X PUT http://localhost:8080/positions/1
 }
 
+// @Summary Suppression d'une offre d'emploi
+// @Description supprime une offre d'emploi
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.Position
+// @Router /positions/{id} [delete]
 func DeletePosition(c *gin.Context) {
 	id := c.Params.ByName("id")
 	if err := models.DeletePosition(id); err != nil {
@@ -66,7 +95,5 @@ func DeletePosition(c *gin.Context) {
 		return
 	}
 	c.JSON(200, gin.H{"id #" + id: "deleted"})
-
-	// curl -i -X DELETE http://localhost:8080/positions/1
 
 }
