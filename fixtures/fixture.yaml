@@ -1,0 +1,61 @@
+- table: 'customer'
+  pk:
+    id: 1
+  fields:
+    name: 'Atos Agence Lille'  
+    description: 'ESN'
+    representative: 'Mathien Mabin'
+    location: 'France/Lille'
+    email: 'lille@atos.fr'
+    tel: '+3345878996'
+    fax: '+334587888' 
+    created_at: 'ON_INSERT_NOW()'
+    updated_at: 'ON_UPDATE_NOW()'
+- table: 'application'
+  pk:
+    id: 1
+  fields:
+    name: 'TOBIN Michel'
+    birth_day: '1978-09-13 00:00:00'
+    email: 'tobin@gmail.com'
+    tel: '+333588899'
+    expected_salary: '50000'
+    created_at: 'ON_INSERT_NOW()'
+    updated_at: 'ON_UPDATE_NOW()'
+- table: 'role'
+  pk:
+    id: 1
+  fields:
+    name: 'admin'
+    created_at: 'ON_INSERT_NOW()'
+    updated_at: 'ON_UPDATE_NOW()'
+- table: 'menu'
+  pk:
+    id: 1
+  fields:
+    name: 'Collaborateurs'
+    type: 'list'
+    url_icon: 'collaborateur.png'
+    file_menu: 'collaborateur.json'
+    created_at: 'ON_INSERT_NOW()'
+    updated_at: 'ON_UPDATE_NOW()'
+- table: 'role_menus'
+  pk:
+    role_id: 1
+    menu_id: 1
+- table: 'role_menus'
+  pk:
+    role_id: 1
+    menu_id: 1
+- table: 'post'
+  pk:
+    id: 1
+  fields:
+    name: 'Chef de projet'
+    description: 'Gerer des projets, assurer un support aux developpeurs'
+    Location: 'Lille'
+    is_available: '1'
+    customer_id: '1'
+    contract_type: 'cdi'
+    created_at: 'ON_INSERT_NOW()'
+    updated_at: 'ON_UPDATE_NOW()'

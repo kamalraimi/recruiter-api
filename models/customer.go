@@ -7,14 +7,14 @@ import (
 )
 
 type Customer struct {
-	ID             uint   `gorm:"primary_key"`
-	Name           string `gorm:"type:varchar(100);unique_index"`
-	Description    string `gorm:"type:text"`
-	Representative string
-	Location       string
-	Email          string `gorm:"type:varchar(100);unique_index"`
-	Tel            string
-	Fax            string
+	ID             uint   `gorm:"primary_key" form:"id" json:"id"`
+	Name           string `gorm:"type:varchar(100);unique_index" form:"name" json:"name"`
+	Description    string `gorm:"type:varchar(255);" form:"description" json:"description"`
+	Representative string `gorm:"type:varchar(100)" form:"representative" json:"representative"`
+	Location       string `gorm:"type:varchar(255)" form:"location" json:"location"`
+	Email          string ` gorm:"type:varchar(100);unique_index" form:"email" json:"email"`
+	Tel            string `gorm:"type:varchar(25)" form:"tel" json:"tel"`
+	Fax            string `gorm:"type:varchar(25)" form:"fax" json:"fax"`
 	CreatedAt      time.Time
 	UpdatedAt      time.Time
 }
@@ -32,9 +32,8 @@ func FindCustomerById(id string) (Customer, error) {
 }
 
 func CreateCustomer(customer *Customer) (*Customer, error) {
-	err := config.GetDB().Create(&customer).Error
+	err := config.GetDB().Debug().Create(&customer).Error
 	return customer, err
-
 }
 
 func UpdateCustomer(customer *Customer) (*Customer, error) {

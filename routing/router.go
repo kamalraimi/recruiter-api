@@ -12,9 +12,9 @@ func Routes(route *gin.Engine) {
 
 	//route.POST("/login", middlewares.Login)
 
-	route.POST("/login", middlewares.GinJwtMiddlewareHandler().LoginHandler)
+	route.POST("/recruiter-api/login", middlewares.GinJwtMiddlewareHandler().LoginHandler)
 
-	roleRoutes := route.Group("/roles")
+	roleRoutes := route.Group("/recruiter-api/roles")
 
 	{
 		//roleRoutes.GET("/", middlewares.AuthMiddleware(), controllers.GetRoles)
@@ -26,7 +26,7 @@ func Routes(route *gin.Engine) {
 		roleRoutes.DELETE("/:id", controllers.DeleteRole)
 	}
 
-	userRoutes := route.Group("/users")
+	userRoutes := route.Group("/recruiter-api/users")
 	{
 		//userRoutes.GET("/", middlewares.AuthMiddleware(), controllers.GetUsers)
 		userRoutes.GET("/", middlewares.GinJwtMiddlewareHandler().MiddlewareFunc(), controllers.GetUsers)
@@ -36,7 +36,7 @@ func Routes(route *gin.Engine) {
 		userRoutes.DELETE("/:id", controllers.DeleteUser)
 	}
 
-	menuRoutes := route.Group("/menus")
+	menuRoutes := route.Group("/recruiter-api/menus")
 	{
 		menuRoutes.GET("/", controllers.GetMenus)
 		menuRoutes.GET("/:id", controllers.GetMenu)
@@ -45,7 +45,7 @@ func Routes(route *gin.Engine) {
 		menuRoutes.DELETE("/:id", controllers.DeleteMenu)
 	}
 
-	customerRoutes := route.Group("/customers")
+	customerRoutes := route.Group("/recruiter-api/customers")
 	{
 		customerRoutes.GET("/", controllers.GetCustomers)
 		customerRoutes.GET("/:id", controllers.GetCustomer)
@@ -54,7 +54,7 @@ func Routes(route *gin.Engine) {
 		customerRoutes.DELETE("/:id", controllers.DeleteCustomer)
 	}
 
-	collaboraterRoutes := route.Group("/collaboraters")
+	collaboraterRoutes := route.Group("/recruiter-api/collaboraters")
 	{
 		collaboraterRoutes.GET("/", controllers.GetCollaboraters)
 		collaboraterRoutes.GET("/:id", controllers.GetCollaborater)
@@ -63,7 +63,7 @@ func Routes(route *gin.Engine) {
 		collaboraterRoutes.DELETE("/:id", controllers.DeleteCollaborater)
 	}
 
-	positionRoutes := route.Group("/positions")
+	positionRoutes := route.Group("/recruiter-api/positions")
 	{
 		positionRoutes.GET("/", controllers.GetPositions)
 		positionRoutes.GET("/:id", controllers.GetPosition)
@@ -72,7 +72,7 @@ func Routes(route *gin.Engine) {
 		positionRoutes.DELETE("/:id", controllers.DeletePosition)
 	}
 
-	applicationRoutes := route.Group("/applications")
+	applicationRoutes := route.Group("/recruiter-api/applications")
 	{
 		applicationRoutes.GET("/", controllers.GetApplications)
 		applicationRoutes.GET("/:id", controllers.GetApplication)
@@ -81,7 +81,7 @@ func Routes(route *gin.Engine) {
 		applicationRoutes.DELETE("/:id", controllers.DeleteApplication)
 	}
 
-	relocationRoutes := route.Group("/relocations")
+	relocationRoutes := route.Group("/recruiter-api/relocations")
 	{
 		relocationRoutes.GET("/", controllers.GetRelocations)
 		relocationRoutes.GET("/:id", controllers.GetRelocation)
@@ -90,7 +90,7 @@ func Routes(route *gin.Engine) {
 		relocationRoutes.DELETE("/:id", controllers.DeleteRelocation)
 	}
 
-	immigrationRoutes := route.Group("/immigrations")
+	immigrationRoutes := route.Group("/recruiter-api/immigrations")
 	{
 		immigrationRoutes.GET("/", controllers.GetImmigrations)
 		immigrationRoutes.GET("/:id", controllers.GetImmigration)

@@ -10,8 +10,8 @@ type Menu struct {
 	ID        uint   `gorm:"primary_key"`
 	Name      string `gorm:"type:varchar(100);unique_index"`
 	Type      string `sql:"type:enum('list','detail');DEFAULT:'list'"`
-	UrlIcon   string
-	FileMenu  string
+	UrlIcon   string `gorm:"not null" form:"url_icon" json:"url_icon"`
+	FileMenu  string `gorm:"not null" form:"file_menu" json:"file_menu"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }

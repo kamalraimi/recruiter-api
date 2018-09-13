@@ -25,7 +25,7 @@ func GetMenu(c *gin.Context) {
 	} else {
 		c.JSON(200, menu)
 	}
-	// curl -i http://localhost:8080/menus/1
+	// curl -i http://localhost:8080/recruiter-api/menus/1
 }
 
 func PostMenu(c *gin.Context) {
@@ -45,7 +45,6 @@ func PutMenu(c *gin.Context) {
 
 	id := c.Params.ByName("id")
 	menu, err := models.FindMenuById(id)
-	fmt.Println(menu)
 	if menu.ID == 0 {
 		c.AbortWithStatus(405)
 		fmt.Println(err)

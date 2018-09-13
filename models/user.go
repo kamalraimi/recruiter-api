@@ -7,11 +7,11 @@ import (
 )
 
 type User struct {
-	ID        uint   `gorm:"primary_key"`
-	Login     string `gorm:"type:varchar(50);unique_index"`
-	Password  string `gorm:"index"`
-	Name      string
-	Email     string `gorm:"type:varchar(100);unique_index"`
+	ID        uint   `gorm:"primary_key" form:"id" json:"id"`
+	Login     string `gorm:"type:varchar(50);unique_index" form:"login" json:"login"`
+	Password  string `gorm:"index" form:"password" json:"password"`
+	Name      string `form:"name" json:"name"`
+	Email     string `gorm:"type:varchar(100);unique_index" form:"email" json:"email"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
 

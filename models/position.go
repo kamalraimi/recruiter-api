@@ -8,7 +8,7 @@ import (
 
 type Position struct {
 	ID           uint   `gorm:"primary_key" form:"id" json:"id"`
-	Title        string `gorm:"type:varchar(100);index"`
+	Name         string `gorm:"type:varchar(100);index"`
 	Description  string `gorm:"type:text"`
 	Location     string `gorm:"type:varchar(255)"`
 	IsAvailable  bool
@@ -20,6 +20,9 @@ type Position struct {
 	CustomerID int
 }
 
+func (Position) TableName() string {
+	return "post"
+}
 func FindAllPosition() ([]Position, error) {
 	var positions []Position
 	err := config.GetDB().Find(&positions).Error
